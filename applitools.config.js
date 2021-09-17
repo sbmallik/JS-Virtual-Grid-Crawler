@@ -1,9 +1,9 @@
 module.exports = {
     
-    serverUrl: "https://eyesapi.applitools.com",
+    serverUrl: "https://gannetteyesapi.applitools.com",
     apiKey: process.env.APPLITOOLS_API_KEY,
     fullPage: true,
-    logs: true,
+    logs: false,
     sendDom: true, //Enable this for RCA (Root Cause Analysis).
     lazyLoad: true,
     proxy: null, //'http://localhost:8888,yourUser,yourPassword',

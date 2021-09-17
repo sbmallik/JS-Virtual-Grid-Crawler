@@ -1,6 +1,8 @@
 "use strict"; 
 
 const urlParser = require('url');
+const os = require('os');
+const dateFormat = require('dateformat');
 const pry = require('pryjs')
 const sitemap = require('sitemap-generator');
 const fs = require('fs');
@@ -167,7 +169,7 @@ async function browser(url) {
    };
 
    const batchInfo = new BatchInfo({
-      id: proccess.env.APPLITOOLS_BATCH_ID || myBatchId,
+      id: process.env.APPLITOOLS_BATCH_ID || myBatchId,
       name: batch,
       sequenceName: batch,
       notifyOnCompletion: true,
@@ -279,7 +281,8 @@ function onlyUnique(value, index, self) {
 }
 
 //Global letiables
-let myBatchId = Math.round((new Date()).getTime() / 1000).toString();
+// let myBatchId = Math.round((new Date()).getTime() / 1000).toString();
+let myBatchId = `${os.userInfo().username}-${dateFormat(new Date(), 'yyyymd_HHMMss')}`;
 console.log("My Applitools Batch ID: " + myBatchId)
 
 let apiKey = String;
@@ -367,7 +370,7 @@ async function crawler() {
       if(program.batch) {
          batch = 'jsc.' + program.batch
       } else {
-         batch = 'jsc.' + host 
+         batch = `webcrawler-${os.userInfo().username}`
       }
       sitemapFile = host;
       array = [program.URL];
